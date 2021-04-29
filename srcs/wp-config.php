@@ -14,16 +14,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'data_base');
+define('DB_NAME', 'wordpress');
 
 /** MySQL database username */
-define('DB_USER', 'megen');
+define('DB_USER', 'admin');
 
 /** MySQL database password */
 define('DB_PASSWORD', '42');
 
 /** MySQL hostname */
-define('DB_HOST', 'megensite');
+define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -40,14 +40,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         '42');
-define('SECURE_AUTH_KEY',  '42');
-define('LOGGED_IN_KEY',    '42');
-define('NONCE_KEY',        '42');
-define('AUTH_SALT',        '42');
-define('SECURE_AUTH_SALT', '42');
-define('NONCE_SALT',       '42');
-define('LOGGED_IN_SALT',   '42');
+define('AUTH_KEY',         '');
+define('SECURE_AUTH_KEY',  '');
+define('LOGGED_IN_KEY',    '');
+define('NONCE_KEY',        '');
+define('AUTH_SALT',        '');
+define('SECURE_AUTH_SALT', '');
+define('NONCE_SALT',       '');
+define('LOGGED_IN_SALT',   '');
 /**#@-*/
 
 /**

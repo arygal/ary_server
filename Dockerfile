@@ -16,9 +16,10 @@ RUN wget -P /var/www/html/ https://www.phpmyadmin.net/downloads/phpMyAdmin-lates
 && rm -r /var/www/html/phpMyAdmin*.tar.gz \
 && mv phpMyAdmin* /var/www/html/phpmyadmin
 #wp
-RUN wget -P  /var/www/html https://wordpress.org/wordpress-5.7.1.tar.gz \
-&& tar -xzf /var/www/html/wordpress-5.7.1.tar.gz \
-&& rm -r /var/www/html/wordpress-5.7.1.tar.gz
+RUN wget -P /var/www/html https://wordpress.org/wordpress-5.7.1.tar.gz \
+&& tar -xvzf /var/www/html/wordpress-5.7.1.tar.gz \
+&& rm -r /var/www/html/wordpress-5.7.1.tar.gz \
+&& mv wordpress* /var/www/html/wordpress
 #ssl
 RUN openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes \
 -keyout /etc/ssl/megen.key -out /etc/ssl/megen.crt \
@@ -26,7 +27,7 @@ RUN openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes \
 #src
 
 COPY srcs/default /etc/nginx/sites-available/
-COPY srcs/*.sh ./
+COPY srcs/run.sh ./
 COPY srcs/mysql-config.sql ./
 COPY srcs/wp-config.php /var/www/html/wordpress/
 COPY srcs/config.inc.php /var/www/html/phpmyadmin/
@@ -34,10 +35,10 @@ COPY srcs/config.inc.php /var/www/html/phpmyadmin/
 WORKDIR /var/www/html/
 #rights & ownership
 RUN chmod -R 755 ./* && chown -R www-data ./*
-#script
-#ENTRYPOINT cd / && bash ./run.sh && cd /var/www/html/
 #ports
 EXPOSE 80 443
+#script
+ENTRYPOINT cd / && bash ./run.sh && cd /var/www/html/
 #±±±±cheatsheet±±±±
 #docker build -t ft_server .
 #docker run -it -p 80:80 -p 443:443 ft_server
